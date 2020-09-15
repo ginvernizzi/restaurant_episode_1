@@ -67,12 +67,12 @@ end
 
 namespace :rails do
     desc "Remote console"
-    task :console, :roles => :app do
+    task :console  do
       run_interactively "bundle exec rails console #{rails_env}"
     end
   
     desc "Remote dbconsole"
-    task :dbconsole, :roles => :app do
+    task :dbconsole do
       run_interactively "bundle exec rails dbconsole #{rails_env}"
     end
 end
