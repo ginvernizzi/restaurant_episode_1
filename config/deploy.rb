@@ -75,4 +75,10 @@ namespace :rails do
     task :dbconsole do
       run_interactively "bundle exec rails dbconsole #{rails_env}"
     end
+
+
+    def run_interactively(command)
+        server ||= find_servers_for_task(current_task).first
+        exec %Q(ssh #{user}@#{myproductionhost} -t '#{command}')
+    end
 end
