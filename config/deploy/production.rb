@@ -9,8 +9,6 @@
 
 server '159.203.91.164', user: 'deploy', roles: %w{app db web} 
 
-set :rails_env, "production"
-
 # role-based syntax
 # ==================
 
