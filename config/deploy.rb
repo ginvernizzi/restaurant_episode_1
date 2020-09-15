@@ -63,11 +63,16 @@ namespace :deploy do
             end   
         end
     end
+end
 
-    desc "Run the console on a remote server."
-    task :console do
-      on roles(:app) do |h|
-        execute_interactively "RAILS_ENV=#{fetch(:rails_env)} bundle exec rails console", h.user
-      end
+namespace :rails do
+    desc "Remote console"
+    task :console, :roles => :app do
+      run_interactively "bundle exec rails console #{rails_env}"
+    end
+  
+    desc "Remote dbconsole"
+    task :dbconsole, :roles => :app do
+      run_interactively "bundle exec rails dbconsole #{rails_env}"
     end
 end
