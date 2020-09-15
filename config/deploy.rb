@@ -64,23 +64,3 @@ namespace :deploy do
         end
     end
 end
-
-namespace :rails do
-    desc "Remote console"
-    task :console  do
-      run_interactively "bundle exec rails console #{fetch(:rails_env)
-      }"
-    end
-  
-    desc "Remote dbconsole"
-    task :dbconsole do
-      run_interactively "bundle exec rails dbconsole #{fetch(:rails_env)
-      }"
-    end
-
-
-    def run_interactively(command)
-        server ||= find_servers_for_task(current_task).first
-        exec %Q(ssh #{user}@#{myproductionhost} -t '#{command}')
-    end
-end
